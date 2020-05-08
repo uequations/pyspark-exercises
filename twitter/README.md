@@ -1,23 +1,21 @@
-###### Twitter
+##### Twitter
 
 Make sure you have a Twitter app created at:
 
 That's where you'll get your:
 
-CONSUMER_KEY
+* CONSUMER_KEY
+* CONSUMER_SECRET
+* ACCESS_KEY
+* ACCESS_SECRET
 
-CONSUMER_SECRET
+If you have issues installing _pyspark_, you may have to install _pypandoc_ first.
 
-ACCESS_KEY
-
-ACCESS_SECRET
-
-If you have issues installing pyspark, you may have to install first.
-
+You may also want to install _psutil_ as well (i.e. pip install psutil).
 
 refer to:
 https://developer.twitter.com/en/docs/tweets/filter-realtime/api-reference/post-statuses-filter
-for details
+for details on the API.
 
 Standard streaming API request parameters
 https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters
