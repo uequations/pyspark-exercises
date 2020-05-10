@@ -5,7 +5,7 @@ import sys
 
 
 # on Windows:
-# >venv\Scripts\python.exe twitter\apache-spark-streaming-app.py
+# >venv\Scripts\python.exe twitter\apache_spark_streaming_app.py
 
 # socket connection params
 TCP_IP = "localhost"
@@ -36,9 +36,17 @@ def process_rdd(time, rdd):
         hashtag_counts_df = sql_context.sql(
             "select hashtag, hashtag_count from hashtags order by hashtag_count desc limit 10")
         hashtag_counts_df.show()
-    except:
+    except ValueError:
+        e = sys.exc_info()
+        print("Error: %s" % e[0])
+        print("%s" % e[1])
+    except ConnectionResetError:
         e = sys.exc_info()[0]
         print("Error: %s" % e)
+    except:
+        e = sys.exc_info()
+        print("Error: %s" % e[0])
+        print("%s" % e[1])
 
 
 if __name__ == '__main__':
@@ -51,7 +59,7 @@ if __name__ == '__main__':
     sc.setLogLevel('ERROR')
 
     # create streaming context
-    ssc = StreamingContext(sc, 2)
+    ssc = StreamingContext(sc, 10)
 
     # set a checkpoint
     ssc.checkpoint("checkpoint_TwitterApp")
